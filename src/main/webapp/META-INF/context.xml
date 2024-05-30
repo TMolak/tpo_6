@@ -1,0 +1,6 @@
+<Context>
+    <Resource name="jdbc/tpo_db" auth="Container"
+              type="javax.sql.DataSource" driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/tpo_db"
+              username="admin" password="admin" maxTotal="20" maxIdle="10" maxWaitMillis="-1"/>
+</Context>

@@ -2,6 +2,27 @@
 <html>
 <head>
     <title>Search Cars</title>
+    <style>
+        .ev-field {
+            position: absolute;
+        }
+    </style>
+    <script>
+        let clickCount = 0;
+
+        function handleEvClick(event) {
+            event.preventDefault();  // Prevent the checkbox from being clicked
+            clickCount++;
+            if (clickCount === 3) {
+                event.target.parentElement.style.display = 'none';
+                return;
+            }
+            const randomTop = Math.floor(Math.random() * (window.innerHeight - 50)) + 'px';
+            const randomLeft = Math.floor(Math.random() * (window.innerWidth - 50)) + 'px';
+            event.target.parentElement.style.top = randomTop;
+            event.target.parentElement.style.left = randomLeft;
+        }
+    </script>
 </head>
 <body>
 <h1>Advanced Car Search</h1>
@@ -17,6 +38,10 @@
 
     <label for="minEngineSize">Min Engine Size (L):</label>
     <input type="number" step="0.1" id="minEngineSize" name="minEngineSize"><br><br>
+
+    <label class="ev-field">
+        <input type="checkbox" onclick="handleEvClick(event)"> EV
+    </label><br><br>
 
     <label for="transmission">Transmission:</label>
     <select id="transmission" name="transmission">

@@ -1,4 +1,4 @@
-package pl.pjatk.tpo.tpo_6.DAO;
+package pl.pjatk.tpo.tpo_6.dao;
 
 import pl.pjatk.tpo.tpo_6.model.CarBrand;
 

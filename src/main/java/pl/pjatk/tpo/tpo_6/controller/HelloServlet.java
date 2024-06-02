@@ -1,4 +1,4 @@
-package pl.pjatk.tpo.tpo_6.servlet;
+package pl.pjatk.tpo.tpo_6.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
-import pl.pjatk.tpo.tpo_6.DAO.CarBrandDAO;
+import pl.pjatk.tpo.tpo_6.dao.CarBrandDAO;
 import pl.pjatk.tpo.tpo_6.model.CarBrand;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
@@ -45,6 +45,8 @@ public class HelloServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            // Add a link to navigate to the search form
+            out.println("<br><a href='search-form.html'>Go to Search Form</a>");
             out.println("</body></html>");
         } catch (Exception e) {
             e.printStackTrace(out);

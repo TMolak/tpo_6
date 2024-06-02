@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Cars</title>
+</head>
+<body>
+<h1>Advanced Car Search</h1>
+<form action="search-servlet" method="get">
+    <label for="brand">Brand:</label>
+    <input type="text" id="brand" name="brand"><br><br>
+
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model"><br><br>
+
+    <label for="minHorsepower">Min Horsepower:</label>
+    <input type="number" id="minHorsepower" name="minHorsepower"><br><br>
+
+    <label for="minEngineSize">Min Engine Size (L):</label>
+    <input type="number" step="0.1" id="minEngineSize" name="minEngineSize"><br><br>
+
+    <label for="transmission">Transmission:</label>
+    <select id="transmission" name="transmission">
+        <option value="">Any</option>
+        <option value="Manual">Manual</option>
+        <option value="Automatic">Automatic</option>
+    </select><br><br>
+
+    <input type="submit" value="Search">
+</form>
+</body>
+</html>

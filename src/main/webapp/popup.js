@@ -1,27 +1,42 @@
-function openPopup(photoUrl) {
-    var popup = window.open('', 'Car Photo', 'width=600,height=400');
-    popup.document.write('<html><head><title>Car Photo</title></head><body>');
-    popup.document.write('<img src="' + photoUrl + '" alt="Car Photo" style="width:100%;height:auto;" />');
-    popup.document.write('</body></html>');
-    popup.document.close();
-}
-
-async function fetchCarPhoto(make, model) {
+async function fetchCarPhotos(make, model) {
     const apiKey = '50WF1eXOjR3qPyzw6SzF9a6kMr7tcPEGWe9LJV1o1LvuMOgaGwzfiXN8';
     const response = await fetch(`https://api.pexels.com/v1/search?query=${make}%20${model}&per_page=5`, {
         headers: {
             Authorization: apiKey
         }
     });
+
+    if (!response.ok) {
+        console.error('Error fetching the photos:', response.statusText);
+        return ['path/to/default/photo.jpg'];
+    }
+
     const data = await response.json();
-    if (data.photos.length > 0) {
-        return data.photos[0].src.large;
+    console.log('Pexels API Response:', data);
+
+    if (data.photos && data.photos.length > 0) {
+        return data.photos.map(photo => photo.src.large);
     } else {
-        return 'path/to/default/photo.jpg';
+        return ['path/to/default/photo.jpg'];
     }
 }
 
+function openPopup(photoUrls) {
+    var popup = window.open('', 'Car Photos', 'width=800,height=600');
+    popup.document.write('<html><head><title>Car Photos</title></head><body>');
+    photoUrls.forEach(photoUrl => {
+        popup.document.write('<img src="' + photoUrl + '" alt="Car Photo" style="width:100%;height:auto;margin-bottom:10px;" />');
+    });
+    popup.document.write('</body></html>');
+    popup.document.close();
+}
+
 async function handlePhotoClick(make, model) {
-    const photoUrl = await fetchCarPhoto(make, model);
-    openPopup(photoUrl);
+    try {
+        const photoUrls = await fetchCarPhotos(make, model);
+        openPopup(photoUrls);
+    } catch (error) {
+        console.error('Error handling photo click:', error);
+        openPopup(['path/to/default/photo.jpg']); // Fallback image
+    }
 }

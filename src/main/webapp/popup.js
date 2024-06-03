@@ -1,4 +1,3 @@
-
 function openPopup(photoUrl) {
     var popup = window.open('', 'Car Photo', 'width=600,height=400');
     popup.document.write('<html><head><title>Car Photo</title></head><body>');
@@ -9,7 +8,7 @@ function openPopup(photoUrl) {
 
 async function fetchCarPhoto(make, model) {
     const apiKey = '50WF1eXOjR3qPyzw6SzF9a6kMr7tcPEGWe9LJV1o1LvuMOgaGwzfiXN8';
-    const response = await fetch(`https://api.pexels.com/v1/search?query=${make}%20${model}&per_page=1`, {
+    const response = await fetch(`https://api.pexels.com/v1/search?query=${make}%20${model}&per_page=5`, {
         headers: {
             Authorization: apiKey
         }

@@ -45,7 +45,6 @@ public class HelloServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
-            // Add a link to navigate to the search form
             out.println("<br><a href='search-form.html'>Go to Search Form</a>");
             out.println("</body></html>");
         } catch (Exception e) {

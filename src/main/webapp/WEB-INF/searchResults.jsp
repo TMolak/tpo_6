@@ -7,9 +7,21 @@
   <title>Wyszukaj Autka</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-image: url('../background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+    }
+  </style>
   <script src='popup.js'></script>
   <script>
-
     let sortDirection = {};
     function sortTable(columnIndex, isNumeric) {
       const table = document.getElementById("resultsTable");
@@ -100,12 +112,12 @@
         <table id='resultsTable' class='table table-bordered'>
           <thead class='thead-light'>
           <tr>
-            <th onclick="sortTable(0, true)">ID <i class="fas fa-sort" style="color:blue"></i></th>
-            <th onclick="sortTable(1, false)">Marka <i class="fas fa-sort" style="color:blue"></i></th>
-            <th onclick="sortTable(2, false)">Model <i class="fas fa-sort" style="color:blue"></i></th>
-            <th onclick="sortTable(3, false)">Silnik <i class="fas fa-sort" style="color:blue"></i></th>
-            <th onclick="sortTable(4, true)">KM <i class="fas fa-sort" style="color:blue"></i></th>
-            <th onclick="sortTable(5, false)">Skrzynia biegów <i class="fas fa-sort" style="color:blue"></i></th>
+            <th onclick="sortTable(0, true)">ID <i class="fas fa-sort" ></i></th>
+            <th onclick="sortTable(1, false)">Marka <i class="fas fa-sort" ></i></th>
+            <th onclick="sortTable(2, false)">Model <i class="fas fa-sort" ></i></th>
+            <th onclick="sortTable(3, false)">Silnik <i class="fas fa-sort" ></i></th>
+            <th onclick="sortTable(4, true)">KM <i class="fas fa-sort" ></i></th>
+            <th onclick="sortTable(5, false)">Skrzynia biegów <i class="fas fa-sort" ></i></th>
             <th>Zdjęcia</th>
           </tr>
           </thead>
@@ -129,8 +141,6 @@
     </c:choose>
   </div>
 </div>
-<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+
 </body>
 </html>

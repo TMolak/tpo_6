@@ -39,10 +39,12 @@ public class SearchServlet extends HttpServlet {
             Double minEngineSize = minEngineSizeParam != null && !minEngineSizeParam.isEmpty() ? Double.parseDouble(minEngineSizeParam) : null;
 
             List<CarVersion> carVersions = carVersionDAO.searchCarVersions(brand, model, minHorsepower, minEngineSize, transmission);
-            out.println("<html><body>");
+            out.println("<html><head>");
+            out.println("<script src='popup.js'></script>");
+            out.println("</head><body>");
             out.println("<h1>Search Results</h1>");
             out.println("<table border='1'>");
-            out.println("<tr><th>ID</th><th>Brand</th><th>Model</th><th>Engine</th><th>Horsepower</th><th>Transmission</th></tr>");
+            out.println("<tr><th>ID</th><th>Brand</th><th>Model</th><th>Engine</th><th>Horsepower</th><th>Transmission</th><th>Photo</th></tr>");
             for (CarVersion carVersion : carVersions) {
                 out.println("<tr>");
                 out.println("<td>" + carVersion.getId() + "</td>");
@@ -51,6 +53,7 @@ public class SearchServlet extends HttpServlet {
                 out.println("<td>" + carVersion.getEngine() + "</td>");
                 out.println("<td>" + carVersion.getHorsepower() + "</td>");
                 out.println("<td>" + carVersion.getTransmission() + "</td>");
+                out.println("<td><button onclick=\"handlePhotoClick('" + carVersion.getBrandName() + "', '" + carVersion.getModelName() + "')\">View Photo</button></td>");
                 out.println("</tr>");
             }
             out.println("</table>");

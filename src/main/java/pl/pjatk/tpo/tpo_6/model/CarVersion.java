@@ -21,7 +21,19 @@ public class CarVersion {
         this.modelName = modelName;
     }
 
-    // Getters and setters
+    @Override
+    public String toString() {
+        return "CarVersion{" +
+                "id=" + id +
+                ", modelId=" + modelId +
+                ", engine='" + engine + '\'' +
+                ", horsepower=" + horsepower +
+                ", transmission='" + transmission + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", modelName='" + modelName + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

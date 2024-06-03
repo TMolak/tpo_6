@@ -50,6 +50,7 @@ public class CarVersionDAO {
         return carVersions;
     }
 
+
     public List<CarVersion> searchCarVersions(String brand, String model, Integer minHorsepower, Double minEngineSize, String transmission) throws Exception {
         List<CarVersion> carVersions = new ArrayList<>();
         Connection conn = null;
@@ -58,7 +59,7 @@ public class CarVersionDAO {
 
         try {
             conn = dataSource.getConnection();
-            StringBuilder sql = new StringBuilder("SELECT v.id, v.model_id, v.engine, v.horsepower, v.transmission ");
+            StringBuilder sql = new StringBuilder("SELECT v.id, v.model_id, v.engine, v.horsepower, v.transmission, b.name as brand_name, m.name as model_name ");
             sql.append("FROM versions v ");
             sql.append("JOIN models m ON v.model_id = m.id ");
             sql.append("JOIN brands b ON m.brand_id = b.id ");
@@ -108,6 +109,8 @@ public class CarVersionDAO {
                 carVersion.setEngine(rs.getString("engine"));
                 carVersion.setHorsepower(rs.getInt("horsepower"));
                 carVersion.setTransmission(rs.getString("transmission"));
+                carVersion.setBrandName(rs.getString("brand_name"));
+                carVersion.setModelName(rs.getString("model_name"));
                 carVersions.add(carVersion);
             }
         } finally {
@@ -118,5 +121,4 @@ public class CarVersionDAO {
 
         return carVersions;
     }
-
 }

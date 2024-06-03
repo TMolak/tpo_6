@@ -42,11 +42,12 @@ public class SearchServlet extends HttpServlet {
             out.println("<html><body>");
             out.println("<h1>Search Results</h1>");
             out.println("<table border='1'>");
-            out.println("<tr><th>ID</th><th>Model ID</th><th>Engine</th><th>Horsepower</th><th>Transmission</th></tr>");
+            out.println("<tr><th>ID</th><th>Brand</th><th>Model</th><th>Engine</th><th>Horsepower</th><th>Transmission</th></tr>");
             for (CarVersion carVersion : carVersions) {
                 out.println("<tr>");
                 out.println("<td>" + carVersion.getId() + "</td>");
-                out.println("<td>" + carVersion.getModelId() + "</td>");
+                out.println("<td>" + carVersion.getBrandName() + "</td>");
+                out.println("<td>" + carVersion.getModelName() + "</td>");
                 out.println("<td>" + carVersion.getEngine() + "</td>");
                 out.println("<td>" + carVersion.getHorsepower() + "</td>");
                 out.println("<td>" + carVersion.getTransmission() + "</td>");

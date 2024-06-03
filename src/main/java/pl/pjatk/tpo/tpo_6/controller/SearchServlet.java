@@ -1,13 +1,13 @@
 package pl.pjatk.tpo.tpo_6.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.RequestDispatcher;
 import pl.pjatk.tpo.tpo_6.dao.CarVersionDAO;
 import pl.pjatk.tpo.tpo_6.model.CarVersion;
 
@@ -24,10 +24,7 @@ public class SearchServlet extends HttpServlet {
         }
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             String brand = request.getParameter("brand");
             String model = request.getParameter("model");
@@ -39,25 +36,14 @@ public class SearchServlet extends HttpServlet {
             Double minEngineSize = minEngineSizeParam != null && !minEngineSizeParam.isEmpty() ? Double.parseDouble(minEngineSizeParam) : null;
 
             List<CarVersion> carVersions = carVersionDAO.searchCarVersions(brand, model, minHorsepower, minEngineSize, transmission);
-            out.println("<html><body>");
-            out.println("<h1>Search Results</h1>");
-            out.println("<table border='1'>");
-            out.println("<tr><th>ID</th><th>Model ID</th><th>Engine</th><th>Horsepower</th><th>Transmission</th></tr>");
-            for (CarVersion carVersion : carVersions) {
-                out.println("<tr>");
-                out.println("<td>" + carVersion.getId() + "</td>");
-                out.println("<td>" + carVersion.getModelId() + "</td>");
-                out.println("<td>" + carVersion.getEngine() + "</td>");
-                out.println("<td>" + carVersion.getHorsepower() + "</td>");
-                out.println("<td>" + carVersion.getTransmission() + "</td>");
-                out.println("</tr>");
-            }
-            out.println("</table>");
-            out.println("</body></html>");
+
+            request.setAttribute("carVersions", carVersions);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/searchResults.jsp");
+            dispatcher.forward(request, response);
+
         } catch (Exception e) {
-            e.printStackTrace(out);
-        } finally {
-            out.close();
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
